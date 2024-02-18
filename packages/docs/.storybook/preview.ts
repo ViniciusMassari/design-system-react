@@ -1,15 +1,22 @@
-import type { Preview } from "@storybook/react";
+import { Preview } from '@storybook/react';
+
+import { themes, ensure } from '@storybook/theming';
 
 const preview: Preview = {
   parameters: {
-    actions: { argTypesRegex: "^on[A-Z].*" },
+    actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
       matchers: {
         color: /(background|color)$/i,
-        date: /Date$/i,
+        date: /Date$/,
       },
+
+    },
+    docs: {
+      theme: themes.dark, // The replacement theme to use
     },
   },
+
 };
 
 export default preview;
