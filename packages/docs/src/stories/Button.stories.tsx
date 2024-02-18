@@ -1,31 +1,51 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { Button } from '@ignite-ui/react'
+import { Button, ButtonProps } from '@ignite-ui/react'
+import { ArrowRight } from 'phosphor-react'
 
-const meta: Meta<typeof Button> = {
-  title: 'Button',
+const meta: Meta<ButtonProps> = {
+  title: 'Form/Button',
   component: Button,
+  args: {
+    children: 'Send',
+  },
 }
 
 export default meta
-type Story = StoryObj<typeof Button>
+type Story = StoryObj<ButtonProps>
 
-export const Primary: Story = {
+export const Primary: Story = {}
+
+export const Secondary: Story = {
   args: {
-    children: 'Enviar',
+    variant: 'secondary',
+    children: 'Create new',
   },
-  render: () => <Button>Clique</Button>,
 }
+export const Tertiary: Story = {
+  args: {
+    variant: 'tertiary',
+    children: 'cancel',
+  },
+}
+
+export const Disabled: Story = {
+  args: {
+    disabled: true,
+  },
+}
+
 export const Small: Story = {
   args: {
-    size: 'small',
-    children: 'Enviar',
+    size: 'sm',
   },
 }
-
-export const Big: Story = {
+export const WithIcon: Story = {
   args: {
-    size: 'big',
-    children: 'Enviar',
+    children: (
+      <>
+        Próximo passo <ArrowRight weight="bold" />
+      </>
+    ),
   },
 }
