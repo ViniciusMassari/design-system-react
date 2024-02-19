@@ -9,6 +9,13 @@ export default {
     src: 'https://github.com/ViniciusMassari.png',
     alt: 'Vinícius Massari',
   },
+  argTypes: {
+    src: {
+      control: {
+        type: 'text',
+      },
+    },
+  },
 } as Meta<AvatarProps>
 
 export type Story = StoryObj<AvatarProps>
