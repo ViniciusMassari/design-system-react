@@ -14,8 +14,8 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "@ignite-ui/ts-config": "*",
-    "@ignite-ui/eslint-config": "*",
+    "@vinicius-ui/ts-config": "*",
+    "@vinicius-ui/eslint-config": "*",
     "typescript": "^5.3.3",
     "tsup": "^8.0.2"
   }

@@ -14,9 +14,9 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "@ignite-ui/eslint-config": "*",
-    "@ignite-ui/tokens": "*",
-    "@ignite-ui/ts-config": "*",
+    "@vinicius-ui/eslint-config": "*",
+    "@vinicius-ui/tokens": "*",
+    "@vinicius-ui/ts-config": "*",
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",
     "react": "^18.2.0",
