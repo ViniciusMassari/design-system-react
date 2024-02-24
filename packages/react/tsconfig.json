@@ -1,3 +1,4 @@
 {
     "extends": "@vinicius-ui/ts-config/react.json"
 }
+

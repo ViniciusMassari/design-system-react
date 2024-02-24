@@ -11,9 +11,9 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "@ignite-ui/eslint-config": "*",
-    "@ignite-ui/react": "*",
-    "@ignite-ui/tokens": "*",
+    "@vinicius-ui/eslint-config": "*",
+    "@vinicius-ui/react": "*",
+    "@vinicius-ui/tokens": "*",
     "phosphor-react": "^1.4.1",
     "polished": "^4.3.1",
     "react": "^18.2.0",
