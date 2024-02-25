@@ -1,39 +1,29 @@
+import * as React from 'react';
 import * as RadixToast from '@radix-ui/react-toast';
-import React,{ useEffect, useRef, useState } from 'react';
-import { ToastRoot, ToastTitle,ToastDescription,ToastViewport,ToastAction } from './styles';
+import {ToastAction,ToastDescription,ToastRoot,ToastTitle,ToastViewport} from './styles'
 import { Button } from '../Button';
 import { Text } from '../Text';
 
 export interface ToastProps{
-  title: string;
-  description: string;
-  altText: string;
+  title:string;
+  description:string;
 }
 
-
-
-
-export function Toast ({altText,description,title}:ToastProps) {
-
-
+export const Toast = ({description,title}:ToastProps) => {
 
 
   return (
     <RadixToast.Provider swipeDirection="right">
-      <Button 
-      >
-        Add to calendar
-      </Button>
-
       <ToastRoot open={true}>
-        <ToastTitle><Text>{title ?? ""}</Text></ToastTitle>
+        <ToastTitle>{title}</ToastTitle>
         <ToastDescription asChild>
-          <Text  size="xs">{description ?? ""}</Text>
+          <Text  size="xs">
+        {description}
 
-
+          </Text>
         </ToastDescription>
-        <ToastAction asChild altText={altText ?? ""}>
-        <Text>X</Text>
+        <ToastAction asChild altText="Goto schedule to undo">
+         <Text>X</Text>
         </ToastAction>
       </ToastRoot>
       <ToastViewport />
@@ -42,6 +32,13 @@ export function Toast ({altText,description,title}:ToastProps) {
 };
 
 
+function oneWeekAway() {
+  const now = new Date();
+  const inOneWeek = now.setDate(now.getDate() + 7);
+  return new Date(inOneWeek);
+}
 
-
+function prettyDate(date:Date) {
+  return new Intl.DateTimeFormat('en-US', { dateStyle: 'full', timeStyle: 'short' }).format(date);
+}
 

@@ -3751,9 +3751,10 @@ var swipeOut = keyframes({
 var ToastRoot = styled(Toast.Root, {
   backgroundColor: "$gray700",
   borderRadius: 6,
+  width: "$64",
   fontFamily: "$code",
   boxShadow: "hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px",
-  padding: 15,
+  padding: "$4",
   display: "grid",
   gridTemplateAreas: '"title action" "description action"',
   gridTemplateColumns: "auto max-content",
@@ -3777,9 +3778,10 @@ var ToastRoot = styled(Toast.Root, {
   }
 });
 var ToastTitle = styled(Toast.Title, {
+  fontFamily: "$code",
   gridArea: "title",
   marginBottom: 5,
-  fontWeight: 500,
+  fontWeight: "$bold",
   color: "$white",
   fontSize: 15
 });
@@ -3797,22 +3799,16 @@ var ToastAction = styled(Toast.Action, {
 
 // src/components/Toast/index.tsx
 var import_jsx_runtime6 = __toESM(require_jsx_runtime());
-function Toast2({}) {
+var Toast2 = ({ description, title }) => {
   return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(RadixToast.Provider, { swipeDirection: "right", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
-      Button,
-      {
-        children: "Add to calendar"
-      }
-    ),
     /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(ToastRoot, { open: true, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ToastTitle, { children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Text, { children: "Agendamento Realizado" }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ToastDescription, { asChild: true, children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Text, { size: "xs", children: "  Quarta-feira, 23 de Outubro \xE0s 16h" }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ToastTitle, { children: title }),
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ToastDescription, { asChild: true, children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Text, { size: "xs", children: description }) }),
       /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ToastAction, { asChild: true, altText: "Goto schedule to undo", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Text, { children: "X" }) })
     ] }),
     /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ToastViewport, {})
   ] });
-}
+};
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   Avatar,

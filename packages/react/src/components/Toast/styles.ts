@@ -37,9 +37,11 @@ const swipeOut = keyframes({
 export const ToastRoot = styled(Toast.Root, {
   backgroundColor: '$gray700',
   borderRadius: 6,
+  width: "$64",
+
   fontFamily:"$code",
   boxShadow: 'hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px',
-  padding: 15,
+  padding: "$4",
   display: 'grid',
   gridTemplateAreas: '"title action" "description action"',
   gridTemplateColumns: 'auto max-content',
@@ -65,9 +67,10 @@ export const ToastRoot = styled(Toast.Root, {
 });
 
 export const ToastTitle = styled(Toast.Title, {
+  fontFamily:"$code",
   gridArea: 'title',
   marginBottom: 5,
-  fontWeight: 500,
+  fontWeight: "$bold",
   color: "$white",
   fontSize: 15,
 });
