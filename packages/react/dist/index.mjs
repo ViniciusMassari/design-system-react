@@ -1296,7 +1296,7 @@ var require_react_development = __commonJS({
           }
           return lazyType;
         }
-        function forwardRef(render) {
+        function forwardRef2(render) {
           {
             if (render != null && render.$$typeof === REACT_MEMO_TYPE) {
               error("forwardRef requires a render function but received a `memo` component. Instead of forwardRef(memo(...)), use memo(forwardRef(...)).");
@@ -2193,7 +2193,7 @@ var require_react_development = __commonJS({
         exports.createElement = createElement$1;
         exports.createFactory = createFactory;
         exports.createRef = createRef;
-        exports.forwardRef = forwardRef;
+        exports.forwardRef = forwardRef2;
         exports.isValidElement = isValidElement;
         exports.lazy = lazy;
         exports.memo = memo;
@@ -3131,11 +3131,11 @@ var require_react_jsx_runtime_development = __commonJS({
             return jsxWithValidation(type, props, key, false);
           }
         }
-        var jsx5 = jsxWithValidationDynamic;
-        var jsxs4 = jsxWithValidationStatic;
+        var jsx7 = jsxWithValidationDynamic;
+        var jsxs6 = jsxWithValidationStatic;
         exports.Fragment = REACT_FRAGMENT_TYPE;
-        exports.jsx = jsx5;
-        exports.jsxs = jsxs4;
+        exports.jsx = jsx7;
+        exports.jsxs = jsxs6;
       })();
     }
   }
@@ -3168,7 +3168,8 @@ var colors = {
   ignite300: "#00B37E",
   ignite500: "#00875F",
   ignite700: "#015F43",
-  ignite900: "#00291D"
+  ignite900: "#00291D",
+  test: "#fff"
 };
 var fontSizes = {
   xxs: "0.625rem",
@@ -3255,7 +3256,7 @@ var {
 
 // src/components/Box.tsx
 var Box = styled("div", {
-  padding: "$4",
+  padding: "$6",
   borderRadius: "$md",
   backgroundColor: "$gray800",
   border: "1px solid $gray600"
@@ -3317,8 +3318,8 @@ import * as Avatar from "@radix-ui/react-avatar";
 var AvatarContainer = styled(Avatar.Root, {
   borderRadius: "$full",
   display: "inline-block",
-  width: "$12",
-  height: "$12",
+  width: "$16",
+  height: "$16",
   overflow: "hidden"
 });
 var AvatarImage = styled(Avatar.Image, {
@@ -3374,6 +3375,9 @@ var Button = styled("button", {
     background: "$gray200",
     cursor: "not-allowed"
   },
+  "&:focus": {
+    boxShadow: "0 0 0 2px $colors$gray100"
+  },
   variants: {
     variant: {
       primary: {
@@ -3422,6 +3426,9 @@ var Button = styled("button", {
   }
 });
 
+// src/components/TextInput/index.tsx
+var import_react2 = __toESM(require_react());
+
 // src/components/TextInput/styles.ts
 var TextInputContainer = styled("div", {
   backgroundColor: "$gray900",
@@ -3430,7 +3437,20 @@ var TextInputContainer = styled("div", {
   boxSizing: "border-box",
   border: "2px solid $gray900",
   display: "flex",
-  alignItems: "baseline",
+  alignItems: "center",
+  variants: {
+    size: {
+      sm: {
+        padding: "$2 $3"
+      },
+      md: {
+        padding: "$3 $4"
+      }
+    }
+  },
+  defaultVariants: {
+    size: "md"
+  },
   "&:has(input:focus)": {
     borderColor: "$ignite300"
   },
@@ -3459,20 +3479,23 @@ var Input = styled("input", {
   "&:disabled": {
     cursor: "not-allowed"
   },
-  "&:placeholder": {
+  "&::placeholder": {
     color: "$gray400"
   }
 });
 
 // src/components/TextInput/index.tsx
 var import_jsx_runtime2 = __toESM(require_jsx_runtime());
-var TextInput = (_a) => {
-  var _b = _a, { prefix } = _b, props = __objRest(_b, ["prefix"]);
-  return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(TextInputContainer, { children: [
-    !!prefix && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Prefix, { children: prefix }),
-    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Input, __spreadValues({}, props))
-  ] });
-};
+var TextInput = (0, import_react2.forwardRef)(
+  (_a, ref) => {
+    var _b = _a, { prefix } = _b, props = __objRest(_b, ["prefix"]);
+    return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(TextInputContainer, { children: [
+      !!prefix && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Prefix, { children: prefix }),
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Input, __spreadValues({ ref }, props))
+    ] });
+  }
+);
+TextInput.displayName = "TextInput";
 
 // src/components/TextArea.tsx
 var TextArea = styled("textarea", {
@@ -3523,7 +3546,7 @@ var CheckboxContainer = styled(Checkbox.Root, {
   '&[data-state="checked"]': {
     backgroundColor: "$ignite300"
   },
-  "&:focus": {
+  '&:focus, &[data-state="checked"]': {
     border: "2px solid $ignite300"
   }
 });
@@ -3603,6 +3626,162 @@ function MultiStep({ size, currentStep = 1 }) {
     }) })
   ] });
 }
+
+// src/components/Tooltip/index.tsx
+import * as RadixTooltip2 from "@radix-ui/react-tooltip";
+
+// src/components/Tooltip/styles.ts
+import * as RadixTooltip from "@radix-ui/react-tooltip";
+var slideUpAndFade = keyframes({
+  "0%": { opacity: 0, transform: "translateY(2px)" },
+  "100%": { opacity: 1, transform: "translateY(0)" }
+});
+var slideRightAndFade = keyframes({
+  "0%": { opacity: 0, transform: "translateX(-2px)" },
+  "100%": { opacity: 1, transform: "translateX(0)" }
+});
+var slideDownAndFade = keyframes({
+  "0%": { opacity: 0, transform: "translateY(-2px)" },
+  "100%": { opacity: 1, transform: "translateY(0)" }
+});
+var slideLeftAndFade = keyframes({
+  "0%": { opacity: 0, transform: "translateX(2px)" },
+  "100%": { opacity: 1, transform: "translateX(0)" }
+});
+var TooltipContent = styled(RadixTooltip.Content, {
+  borderRadius: 4,
+  fontFamily: "$code",
+  padding: "10px 15px",
+  fontSize: "$sm",
+  lineHeight: 1,
+  color: "$white",
+  backgroundColor: "$black",
+  boxShadow: "hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px",
+  userSelect: "none",
+  animationDuration: "400ms",
+  animationTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
+  willChange: "transform, opacity",
+  '&[data-state="delayed-open"]': {
+    '&[data-side="top"]': { animationName: slideDownAndFade },
+    '&[data-side="right"]': { animationName: slideLeftAndFade },
+    '&[data-side="bottom"]': { animationName: slideUpAndFade },
+    '&[data-side="left"]': { animationName: slideRightAndFade }
+  }
+});
+var TooltipArrow = styled(RadixTooltip.Arrow, {
+  fill: "$black"
+});
+
+// src/components/Tooltip/index.tsx
+var import_jsx_runtime5 = __toESM(require_jsx_runtime());
+var Tooltip = ({ content, children }) => {
+  return /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(RadixTooltip2.Provider, { children: /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)(RadixTooltip2.Root, { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(RadixTooltip2.Trigger, { asChild: true, children }),
+    /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(RadixTooltip2.Portal, { children: /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)(TooltipContent, { sideOffset: 5, children: [
+      content,
+      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(TooltipArrow, {})
+    ] }) })
+  ] }) });
+};
+
+// src/components/Toast/index.tsx
+import * as RadixToast from "@radix-ui/react-toast";
+
+// src/components/Toast/styles.ts
+import * as Toast from "@radix-ui/react-toast";
+var VIEWPORT_PADDING = 25;
+var ToastViewport = styled(Toast.Viewport, {
+  position: "fixed",
+  bottom: 0,
+  right: 0,
+  display: "flex",
+  flexDirection: "column",
+  padding: VIEWPORT_PADDING,
+  gap: 10,
+  width: 390,
+  maxWidth: "100vw",
+  margin: 0,
+  listStyle: "none",
+  zIndex: 2147483647,
+  outline: "none"
+});
+var hide = keyframes({
+  "0%": { opacity: 1 },
+  "100%": { opacity: 0 }
+});
+var slideIn2 = keyframes({
+  from: { transform: `translateX(calc(100% + ${VIEWPORT_PADDING}px))` },
+  to: { transform: "translateX(0)" }
+});
+var swipeOut = keyframes({
+  from: { transform: "translateX(var(--radix-toast-swipe-end-x))" },
+  to: { transform: `translateX(calc(100% + ${VIEWPORT_PADDING}px))` }
+});
+var ToastRoot = styled(Toast.Root, {
+  backgroundColor: "$gray700",
+  borderRadius: 6,
+  fontFamily: "$code",
+  boxShadow: "hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px",
+  padding: 15,
+  display: "grid",
+  gridTemplateAreas: '"title action" "description action"',
+  gridTemplateColumns: "auto max-content",
+  columnGap: 15,
+  alignItems: "center",
+  '&[data-state="open"]': {
+    animation: `${slideIn2} 150ms cubic-bezier(0.16, 1, 0.3, 1)`
+  },
+  '&[data-state="closed"]': {
+    animation: `${hide} 100ms ease-in`
+  },
+  '&[data-swipe="move"]': {
+    transform: "translateX(var(--radix-toast-swipe-move-x))"
+  },
+  '&[data-swipe="cancel"]': {
+    transform: "translateX(0)",
+    transition: "transform 200ms ease-out"
+  },
+  '&[data-swipe="end"]': {
+    animation: `${swipeOut} 100ms ease-out`
+  }
+});
+var ToastTitle = styled(Toast.Title, {
+  gridArea: "title",
+  marginBottom: 5,
+  fontWeight: 500,
+  color: "$white",
+  fontSize: 15
+});
+var ToastDescription = styled(Toast.Description, {
+  gridArea: "description",
+  margin: 0,
+  color: "$gray400",
+  fontSize: 13,
+  lineHeight: 1.3
+});
+var ToastAction = styled(Toast.Action, {
+  alignSelf: "center",
+  cursor: "pointer"
+});
+
+// src/components/Toast/index.tsx
+var import_jsx_runtime6 = __toESM(require_jsx_runtime());
+function Toast2({}) {
+  return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(RadixToast.Provider, { swipeDirection: "right", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+      Button,
+      {
+        children: "Add to calendar"
+      }
+    ),
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(ToastRoot, { open: true, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ToastTitle, { children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Text, { children: "Agendamento Realizado" }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ToastDescription, { asChild: true, children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Text, { size: "xs", children: "  Quarta-feira, 23 de Outubro \xE0s 16h" }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ToastAction, { asChild: true, altText: "Goto schedule to undo", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Text, { children: "X" }) })
+    ] }),
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ToastViewport, {})
+  ] });
+}
 export {
   Avatar2 as Avatar,
   Box,
@@ -3612,7 +3791,17 @@ export {
   MultiStep,
   Text,
   TextArea,
-  TextInput
+  TextInput,
+  Toast2 as Toast,
+  Tooltip,
+  config,
+  createTheme,
+  css,
+  getCssText,
+  globalCss,
+  keyframes,
+  styled,
+  theme
 };
 /*! Bundled license information:
 
